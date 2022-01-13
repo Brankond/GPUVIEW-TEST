@@ -28,7 +28,7 @@
                     <div class="row">
                         <a href='/gpupage?hostname={{gpustat.get('hostname','-')}}' class="text-decoration-none text-dark"><h5>{{gpustat.get('hostname','-')}}</h5></a>
                         % for gpu in gpustat.get('gpus','[]'):
-                        <div class="col">
+                        <div class="col-3 gy-3">
                             <div class="card text-white {{gpu.get('flag','')}}">
                                 <div class="card-body">
                                     <h6 class="card-title">{{gpu.get('name','-')}}</h6>
