@@ -31,6 +31,12 @@ def index():
     now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
     return template('index', gpustats=gpustats, update_time=now)
 
+@app.route('/gpupage')
+def index():
+    gpustats = core.all_gpustats()
+    now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
+    return template('gpupage', gpustats=gpustats, update_time=now)
+
 
 @app.route('/gpustat', methods=['GET'])
 def report_gpustat():
