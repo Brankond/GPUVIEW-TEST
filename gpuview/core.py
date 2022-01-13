@@ -64,7 +64,7 @@ def my_gpustat():
                 gpu.pop("uuid", None)
                 gpu.pop("query_time", None)
 
-            gpu['flag'] = 'bg-primary'
+            gpu['flag'] = 'bg-dark bg-opacity-50'
             if gpu['memory'] > 75:
                 gpu['flag'] = 'bg-danger'
             elif gpu['memory'] > 50:
