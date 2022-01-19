@@ -1,5 +1,4 @@
 % from bottle import request
-% import urllib
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +11,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" 
         rel="stylesheet" type="text/css"/>
 </head>
+
+<script src = "script.js"></script>
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-light bg-light">
@@ -25,32 +26,32 @@
         % gpustat = gpustat_all[0]
         <div class="container-fluid" id="GPUDashboardbody">
             <div class="row mt-3 mb-0">
-                <h5>Device > {{gpustat.get('hostname','-')}}</h5>
+                <h5>Server > {{gpustat.get('hostname','-')}}</h5>
                 % for gpu in gpustat.get('gpus','[]'):
                 <div class="col-6 gy-3">
                     <div class="card {{gpu.get('flag','-')}}">
                         <div class="card-body">
                             <h6 class="card-title text-white">{{gpu.get('name','-')}}</h6>
                             <div class="card-footer text-white clearfix small z-1 bg-transparent">
-                            <span class="float-left">
-                                <span class="text-nowrap">
-                                <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-                                Temp. {{ gpu.get('temperature.gpu', '-') }}&#8451; 
-                                </span> |
-                                <span class="text-nowrap">
-                                <i class="fa fa-microchip" aria-hidden="true"></i>
-                                Mem. {{ gpu.get('memory', '-') }}% 
-                                </span> |
-                                <span class="text-nowrap">
-                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                                Util. {{ gpu.get('utilization.gpu', '-') }}%
-                                </span> |
-                                <span class="text-nowrap">
-                                <i class="fa fa-users" aria-hidden="true"></i>
-                                {{ gpu.get('users', '-') }}
+                                <span class="float-left">
+                                    <span class="text-nowrap">
+                                    <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
+                                    Temp. {{ gpu.get('temperature.gpu', '-') }}&#8451; 
+                                    </span> |
+                                    <span class="text-nowrap">
+                                    <i class="fa fa-microchip" aria-hidden="true"></i>
+                                    Mem. {{ gpu.get('memory', '-') }}% 
+                                    </span> |
+                                    <span class="text-nowrap">
+                                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                                    Util. {{ gpu.get('utilization.gpu', '-') }}%
+                                    </span> |
+                                    <span class="text-nowrap">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    {{ gpu.get('users', '-') }}
+                                    </span>
                                 </span>
-                            </span>
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -95,5 +96,6 @@
         </div>
 
     </div>
+
 </body>
 </html>
