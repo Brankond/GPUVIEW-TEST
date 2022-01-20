@@ -23,15 +23,16 @@
         <div class="container-fluid" id="dashboardbody">
 
              % for gpustat in gpustats:
-            <div class="card mt-3 border-3">
+            <div class="card mt-3 bg-secondary bg-opacity-10">
                 <div class="card-body">
                     <div class = "card-title">
                         <a href='/gpupage?hostname={{gpustat.get('hostname','-')}}' class="text-decoration-none text-dark"><h5>Server >> {{gpustat.get('hostname','-')}}</h5></a>
                     </div>
                     <div class="row">
                         % for gpu in gpustat.get('gpus','[]'):
+                        % memory = gpu.get('memory','-')/100
                         <div class="col-3 gy-3">
-                            <div class="card text-white {{gpu.get('flag','')}}">
+                            <div class="card text-dark" style="background-color: rgb({{255*memory}},{{255*(1-memory)}},0)">
                                 <div class="card-body">
                                     <h6 class="card-title">{{gpu.get('name','-')}}</h6>
                                     <p class="card-text">Mem. {{gpu.get('memory','-')}}%</p>

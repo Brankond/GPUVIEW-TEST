@@ -28,11 +28,12 @@
             <div class="row mt-3 mb-0">
                 <h5>Server > {{gpustat.get('hostname','-')}}</h5>
                 % for gpu in gpustat.get('gpus','[]'):
+                % mem = gpu.get('memory','-')/100
                 <div class="col-6 gy-3">
-                    <div class="card {{gpu.get('flag','-')}}">
+                    <div class="card" style="background-color: rgb({{255*mem}},{{255*(1-mem)}},0)">
                         <div class="card-body">
-                            <h6 class="card-title text-white">{{gpu.get('name','-')}}</h6>
-                            <div class="card-footer text-white clearfix small z-1 bg-transparent">
+                            <h6 class="card-title text-dark">{{gpu.get('name','-')}}</h6>
+                            <div class="card-footer text-dark clearfix small z-1 bg-transparent">
                                 <span class="float-left">
                                     <span class="text-nowrap">
                                     <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
