@@ -7,7 +7,7 @@ path=$(which gpuview)
 
 echo ''
 echo 'Installing supervisor...'
-sudo apt install -y supervisor
+sudo apt-get install supervisor
 
 echo ''
 echo 'Deploying service...'
