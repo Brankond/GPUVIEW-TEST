@@ -60,6 +60,8 @@ def arg_parser():
     rem_parser.add_argument('--url', required=True,
                             help="Url of the GPU node to remove")
 
+    rem_parser = subparsers.add_parser("removeall", help="Remove all GPU hosts")
+    
     subparsers.add_parser("hosts", help="Print all GPU hosts")
 
     subparsers.add_parser("service", parents=[base_parser],

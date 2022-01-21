@@ -5,6 +5,7 @@ Core functions of gpuview.
 @url https://github.com/fgaim
 """
 
+from fileinput import close
 import os
 import json
 import subprocess
@@ -131,13 +132,15 @@ def load_hosts():
         print("There are no registered hosts! Use `gpuview add` first.")
         return hosts
 
-    for line in open(HOSTS_DB, 'r'):
+    HOSTS = open(HOSTS_DB, 'r')
+    for line in HOSTS:
         try:
             name, url = line.strip().split('\t')
             hosts[url] = name
         except Exception as e:
             print('Error: %s loading host: %s!' %
                   (getattr(e, 'message', str(e)), line))
+    HOSTS.close()
     return hosts
 
 
@@ -165,6 +168,11 @@ def remove_host(url):
     else:
         print("Couldn't find host: %s!" % url)
 
+def remove_all_hosts():
+    hosts = load_hosts()
+    hosts.clear()
+    save_hosts(hosts)
+    print("All hosts removed")
 
 def print_hosts():
     hosts = load_hosts()

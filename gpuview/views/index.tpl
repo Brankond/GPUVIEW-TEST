@@ -32,7 +32,7 @@
                         % for gpu in gpustat.get('gpus','[]'):
                         % memory = gpu.get('memory','-')/100
                         <div class="col-3 gy-3">
-                            <div class="card text-dark" style="background-color: rgb({{255*memory}},{{255*(1-memory)}},0)">
+                            <div class="card text-white" style="background-color: rgb({{220*memory}},{{220*(1-memory)}},50)">
                                 <div class="card-body">
                                     <h6 class="card-title">{{gpu.get('name','-')}}</h6>
                                     <p class="card-text">Mem. {{gpu.get('memory','-')}}%</p>

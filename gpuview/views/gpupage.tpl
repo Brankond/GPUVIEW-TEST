@@ -12,7 +12,6 @@
         rel="stylesheet" type="text/css"/>
 </head>
 
-<script src = "script.js"></script>
 <body>
     <div class="container-fluid">
         <nav class="navbar navbar-light bg-light">
@@ -22,18 +21,21 @@
         </nav>
 
         % hostname = request.query.hostname
+        % ip_raw =[url for url, name in host_ip.items() if name == hostname]
+        % if ip_raw:
+        %   ip = ip_raw[0].replace("http://","").replace("/","")
         % gpustat_all = list(filter(lambda host: host['hostname'] == hostname, gpustats))
         % gpustat = gpustat_all[0]
         <div class="container-fluid" id="GPUDashboardbody">
             <div class="row mt-3 mb-0">
-                <h5>Server > {{gpustat.get('hostname','-')}}</h5>
+                <h5>Server > {{gpustat.get('hostname','-')}} | {{ip}}</h5>
                 % for gpu in gpustat.get('gpus','[]'):
                 % mem = gpu.get('memory','-')/100
                 <div class="col-6 gy-3">
-                    <div class="card" style="background-color: rgb({{255*mem}},{{255*(1-mem)}},0)">
+                    <div class="card" style="background-color: rgb({{220*mem}},{{220*(1-mem)}},50)">
                         <div class="card-body">
-                            <h6 class="card-title text-dark">{{gpu.get('name','-')}}</h6>
-                            <div class="card-footer text-dark clearfix small z-1 bg-transparent">
+                            <h6 class="card-title text-white">{{gpu.get('name','-')}}</h6>
+                            <div class="card-footer text-white clearfix small z-1 bg-transparent">
                                 <span class="float-left">
                                     <span class="text-nowrap">
                                     <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>

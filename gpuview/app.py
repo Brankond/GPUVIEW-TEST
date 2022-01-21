@@ -33,9 +33,10 @@ def index():
 
 @app.route('/gpupage')
 def index():
+    host_ip = core.load_hosts()
     gpustats = core.all_gpustats()
     now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
-    return template('gpupage', gpustats=gpustats, update_time=now)
+    return template('gpupage', host_ip = host_ip, gpustats=gpustats, update_time=now)
 
 
 @app.route('/gpustat', methods=['GET'])
@@ -67,7 +68,7 @@ def main():
         core.safe_zone(args.safe_zone)
         global EXCLUDE_SELF
         EXCLUDE_SELF = args.exclude_self
-        app.run(host=args.host, port=args.port, debug=args.debug)
+        app.run(host=args.host, port=args.port, debug=args.debug, server="tornado")
     elif 'service' == args.action:
         core.install_service(host=args.host,
                              port=args.port,
@@ -77,6 +78,8 @@ def main():
         core.add_host(args.url, args.name)
     elif 'remove' == args.action:
         core.remove_host(args.url)
+    elif 'removeall' == args.action:
+        core.remove_all_hosts()
     elif 'hosts' == args.action:
         core.print_hosts()
     else:
