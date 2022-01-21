@@ -24,15 +24,18 @@ TEMPLATE_PATH.insert(0, abs_views_path)
 
 EXCLUDE_SELF = False  # Do not report to `/gpustat` calls.
 
-gpustats = core.all_gpustats()
-now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
+
 
 @app.route('/')
 def index():
+    gpustats = core.all_gpustats()
+    now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
     return template('index', gpustats=gpustats, update_time=now)
 
 @app.route('/gpupage')
 def index():
+    gpustats = core.all_gpustats()
+    now = datetime.now().strftime('Updated at %Y-%m-%d %H-%M-%S')
     host_ip = core.load_hosts()
     return template('gpupage', host_ip = host_ip, gpustats=gpustats, update_time=now)
 
