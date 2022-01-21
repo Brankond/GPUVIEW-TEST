@@ -3,3 +3,5 @@ bottle>=0.12.14
 flake8
 pytest
 pytest-cov
+tornado
+wheel
