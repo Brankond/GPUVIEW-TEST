@@ -16,7 +16,7 @@ log_path=/home/${user}/.gpuview
 mkdir -p ${log_path}
 
 sudo echo "[program:gpuview]
-user = root
+user = ${user}
 environment = HOME=\"/home/${user}\",USER=\"${user}\"
 directory = /home/${user}
 command = ${path} run ${1}
